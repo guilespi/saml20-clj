@@ -30,10 +30,10 @@
     (.setFeature doc "http://xml.org/sax/features/external-general-entities" false)
     (.setFeature doc "http://xml.org/sax/features/external-parameter-entities" false)
     (.setFeature doc "http://apache.org/xml/features/nonvalidating/load-external-dtd" false)
-    (.setAttribute doc "http://www.oracle.com/xml/jaxp/properties/entityExpansionLimit" "2000")
-    (.setAttribute doc "http://www.oracle.com/xml/jaxp/properties/totalEntitySizeLimit" "100000")
-    (.setAttribute doc "http://www.oracle.com/xml/jaxp/properties/maxParameterEntitySizeLimit" "10000")
-    (.setAttribute doc "http://www.oracle.com/xml/jaxp/properties/maxElementDepth" "100")
+    ;(.setAttribute doc "http://www.oracle.com/xml/jaxp/properties/entityExpansionLimit" "2000")
+    ;(.setAttribute doc "http://www.oracle.com/xml/jaxp/properties/totalEntitySizeLimit" "100000")
+    ;(.setAttribute doc "http://www.oracle.com/xml/jaxp/properties/maxParameterEntitySizeLimit" "10000")
+    ;(.setAttribute doc "http://www.oracle.com/xml/jaxp/properties/maxElementDepth" "100")
     (.setExpandEntityReferences doc false)
     (.newDocumentBuilder doc)))
 
@@ -68,7 +68,7 @@
         xml-sig-node (xmlsig-from-xmldoc xmldoc)
         validate-signature #(let [context (get-dom-context (singleton-key-selector public-key) xml-sig-node)
                                   signature (.unmarshalXMLSignature sig-factory context)]
-                              (.validate signature context))] 
+                              (.validate signature context))]
     (if xml-sig-node (validate-signature)
       true)))
 
